@@ -24,6 +24,30 @@
 .DS_Store
 *.pem
 
+# image assets
+*.ico
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.ico
+*.webp
+*.svg
+
+# video assets
+*.mp4
+*.mov
+*.avi
+*.wmv
+*.flv
+*.mkv
+*.webm
+*.mpeg
+*.mpg
+*.m4v
+
 # debug
 npm-debug.log*
 yarn-debug.log*
