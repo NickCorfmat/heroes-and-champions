@@ -71,7 +71,7 @@ export default function Home() {
         </div>
         <div className="w-1/2 h-full flex flex-col items-center gap-4">
           <div className="w-full h-1/2">
-            <ParallaxImage src={ebay_store} alt="eBay Store" href="/ebay-store" />
+            <ParallaxImage src={ebay_store} alt="eBay Store" href="https://www.ebay.com/str/ccs1comics" />
           </div>
           <div className="w-full h-1/2">
             <ParallaxImage src={cgc_comics} alt="CGC Comics" href="/cgc-comics" />
