@@ -54,10 +54,21 @@ export function ProductCarousel({
   const scroll = (direction: "left" | "right") => {
     if (!containerRef.current) return;
     containerRef.current.scrollBy({
-      left: direction === "left" ? -300 : 300,
+      left: direction === "left" ? -500 : 500,
       behavior: "smooth",
     });
   };
+
+  const SkeletonCard = () => (
+    <div className="w-[200px] shrink-0 bg-white rounded-xl shadow animate-pulse">
+      <div className="w-full h-64 bg-gray-300 rounded-t-xl" />
+      <div className="p-3 flex flex-col gap-2">
+        <div className="h-3 bg-gray-300 rounded w-4/5" />
+        <div className="h-3 bg-gray-300 rounded w-3/5" />
+        <div className="h-5 bg-gray-300 rounded w-2/5 mt-1" />
+      </div>
+    </div>
+  );
 
   return (
     <div className="w-full py-8">
@@ -80,18 +91,22 @@ export function ProductCarousel({
       </div>
 
       {loading ? (
-        <p>Loading...</p>
+        <div className="flex gap-4 overflow-hidden">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <SkeletonCard key={i} />
+          ))}
+        </div>
       ) : (
         <div
           ref={containerRef}
-          className="flex gap-4 overflow-x-auto overflow-y-hidden scroll-smooth"
+          className="flex gap-4 overflow-x-auto overflow-y-visible scroll-smooth py-2"
           style={{ scrollbarWidth: "none" }}
         >
           {products.map((product) => (
             <Link
               key={product.id}
               href={`/product/${product.id}`}
-              className="w-[200px] shrink-0 bg-white rounded-xl shadow hover:scale-105 transition"
+              className="w-[200px] shrink-0 bg-white rounded-xl shadow hover:scale-105 transition overflow-hidden"
             >
               <div className="relative w-full h-64">
                 {product.image_ref && (
