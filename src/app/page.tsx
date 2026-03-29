@@ -8,12 +8,21 @@ import new_releases from "../../public/batman1.png";
 import ebay_store from "../../public/comicsbg.png";
 import cgc_comics from "../../public/cgc.png";
 import { useRef, useState } from "react";
-import { supabaseClient } from "@/lib/supabaseClient";
 
 const TRANSLATE_STRENGTH = 5;
 const IMAGE_OVERFLOW = 30;
 
-function ParallaxImage({ src, alt, href, priority }: { src: any; alt: string; href: string; priority?: boolean }) {
+function ParallaxImage({
+  src, alt, href, priority, caption, heading, buttonLabel,
+}: {
+  src: any;
+  alt: string;
+  href: string;
+  priority?: boolean;
+  caption?: string;
+  heading?: string;
+  buttonLabel?: string;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const [active, setActive] = useState(false);
@@ -39,24 +48,38 @@ function ParallaxImage({ src, alt, href, priority }: { src: any; alt: string; hr
       onMouseLeave={handleMouseLeave}
       className="relative w-full h-full overflow-hidden rounded-2xl cursor-pointer"
     >
-      <Link href={href} className="absolute inset-0 z-10" aria-label={alt} />
+      {/* Image layer */}
       <div
         style={{
           position: "absolute",
           inset: -IMAGE_OVERFLOW,
-          transition: active ? "transform 0.5s ease-out" : "transform 0.5s ease-out",
+          transition: "transform 0.5s ease-out",
           transform: `translate(${translate.x}px, ${translate.y}px) scale(${active ? 1.04 : 1})`,
           willChange: "transform",
         }}
       >
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className="object-cover"
-          priority={priority}
-        />
+        <Image src={src} alt={alt} fill className="object-cover" priority={priority} />
       </div>
+
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 rounded-2xl" />
+
+      {/* Text + button */}
+      <div className="absolute bottom-0 left-0 z-20 p-5 flex flex-col gap-2">
+        {caption && <p className="text-white/80 text-sm">{caption}</p>}
+        {heading && <h2 className="text-white text-2xl font-bold drop-shadow">{heading}</h2>}
+        {buttonLabel && (
+          <Link
+            href={href}
+            className="mt-1 w-fit px-5 py-2 bg-red-700 hover:bg-red-600 text-white font-bold rounded-md transition-colors duration-200"
+          >
+            {buttonLabel}
+          </Link>
+        )}
+      </div>
+
+      {/* Full clickable area */}
+      <Link href={href} className="absolute inset-0 z-10" aria-label={alt} />
     </div>
   );
 }
@@ -64,30 +87,52 @@ function ParallaxImage({ src, alt, href, priority }: { src: any; alt: string; hr
 export default function Home() {
   return (
     <div className="w-full flex flex-col items-center z-0">
-      { /* Hero */}
+      {/* Hero */}
       <div className="w-full h-[500px] flex flex-row p-8 gap-4 bg-black">
         <div className="w-1/2 h-full">
-          <ParallaxImage src={new_releases} alt="New Releases" href="/new-releases" priority />
+          <ParallaxImage
+            src={new_releases}
+            alt="New Releases"
+            href="/new-releases"
+            priority
+            caption="Check out the newest wave of comics"
+            heading="New Releases"
+            buttonLabel="Explore"
+          />
         </div>
         <div className="w-1/2 h-full flex flex-col items-center gap-4">
           <div className="w-full h-1/2">
-            <ParallaxImage src={ebay_store} alt="eBay Store" href="https://www.ebay.com/str/ccs1comics" />
+            <ParallaxImage
+              src={ebay_store}
+              alt="eBay Store"
+              href="https://www.ebay.com/str/ccs1comics"
+              caption="Explore our wider selection"
+              heading="eBay"
+              buttonLabel="Visit"
+            />
           </div>
           <div className="w-full h-1/2">
-            <ParallaxImage src={cgc_comics} alt="CGC Comics" href="/cgc-comics" />
+            <ParallaxImage
+              src={cgc_comics}
+              alt="CGC Comics"
+              href="/cgc-comics"
+              caption="CGC comics for your collectible taste"
+              heading="Graded Comics"
+              buttonLabel="Explore"
+            />
           </div>
         </div>
       </div>
 
       {/* Product Shelves */}
-      <div className="w-full flex flex-col items-center px-8">
-        <ProductCarousel title="Featured Comics" category="comic"></ProductCarousel>
-        <ProductCarousel title="Featured Comics" category="comic"></ProductCarousel>
-        <ProductCarousel title="Featured Comics" category="comic"></ProductCarousel>
+      <div className="w-full max-w-screen-2xl flex flex-col items-center px-8">
+        <ProductCarousel title="Featured Comics" category="comic" />
+        <ProductCarousel title="Featured Comics" category="comic" />
+        <ProductCarousel title="Featured Comics" category="comic" />
       </div>
 
-      { /* Footer */ }
-      <Footer></Footer>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
