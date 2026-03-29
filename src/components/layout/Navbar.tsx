@@ -11,33 +11,24 @@ export function Navbar() {
             <Image
               src={logo}
               alt="Heroes & Champions logo"
-              className="h-[95px] w-[234px] cursor-pointer transition-all duration-500 hover:brightness-125 hover:scale-101 active:scale-98"              priority
+              className="h-[95px] w-[234px] object-scale-down cursor-pointer transition-all duration-500 hover:brightness-125 hover:scale-101 active:scale-98"              priority
             />
           </Link>
         </div>
         <div className="flex items-center justify-center">
-          <div className="flex h-[48px] w-[450px] items-center justify-between rounded-full border-[1px] border-white pl-[20px] pr-[1px]">
+          <div className="flex h-[45px] w-[450px] items-center justify-between rounded-full border-[1px] border-white px-[20px]">
             <input
-              className="h-full w-full bg-transparent text-white placeholder-white/70 outline-none"
+              className="w-full h-full bg-transparent text-white placeholder-white/70 outline-none"
               type="search"
               placeholder="Search titles, authors, products"
             />
           </div>
+          <i className="fa-solid fa-magnifying-glass ml-3 text-xl"></i>
         </div>
-        <div className="flex items-center justify-end gap-[10px]">
-          <Link
-            href="/login"
-            className="text-white/90 hover:text-white text-lg font-semibold"
-          >
-            Log In
-          </Link>
-          
-          <Link
-            href="/login"
-            className="text-white/90 hover:text-white text-lg font-semibold"
-          >
-            Sign Up
-          </Link>
+        <div className="flex items-center justify-end gap-[10px] text-white text-lg font-semibold">
+          <Link href="/login">Log In</Link>
+          <Link href="/login">Sign Up</Link>
+          <i className="fa-solid fa-bag-shopping ml-2 hover: cursor-pointer"></i>
         </div>
       </div>
       <div className="h-[60px] w-full bg-[#295585]">
