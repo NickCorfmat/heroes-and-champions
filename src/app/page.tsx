@@ -80,7 +80,7 @@ export default function Home() {
       </div>
 
       {/* Product Shelves */}
-      <div className="w-full flex flex-col items-center z-0 px-8">
+      <div className="w-full flex flex-col items-center px-8">
         <ProductCarousel title="Featured Comics" category="comic"></ProductCarousel>
         <ProductCarousel title="Featured Comics" category="comic"></ProductCarousel>
         <ProductCarousel title="Featured Comics" category="comic"></ProductCarousel>
