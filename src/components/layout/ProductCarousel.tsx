@@ -99,14 +99,14 @@ export function ProductCarousel({
       ) : (
         <div
           ref={containerRef}
-          className="flex gap-4 overflow-x-auto overflow-y-visible scroll-smooth py-2"
+          className="flex text-black gap-4 overflow-x-auto overflow-y-hidden scroll-smooth py-1"
           style={{ scrollbarWidth: "none" }}
         >
           {products.map((product) => (
             <Link
               key={product.id}
               href={`/product/${product.id}`}
-              className="w-[200px] shrink-0 bg-white rounded-xl shadow hover:scale-105 transition overflow-hidden"
+              className="w-[170px] shrink-0 bg-white rounded-xl shadow hover:scale-101 transition overflow-hidden"
             >
               <div className="relative w-full h-64">
                 {product.image_ref && (
@@ -123,7 +123,7 @@ export function ProductCarousel({
                 <h3 className="font-semibold text-sm line-clamp-2">
                   {product.title ?? "Untitled"}
                 </h3>
-                <p className="text-lg font-bold">
+                <p className="text-sm font-bold">
                   {product.price != null ? `$${product.price.toFixed(2)}` : "—"}
                 </p>
               </div>
