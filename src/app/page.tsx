@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ProductCarousel } from "@/components/layout/ProductCarousel";
+import { Footer } from "@/components/layout/Footer";
 import new_releases from "../../public/batman1.png";
 import ebay_store from "../../public/comicsbg.png";
 import cgc_comics from "../../public/cgc.png";
@@ -62,8 +63,9 @@ function ParallaxImage({ src, alt, href, priority }: { src: any; alt: string; hr
 
 export default function Home() {
   return (
-    <div className="w-full h-[100vh] flex flex-col items-center px-8 pt-4 z-0">
-      <div className="w-full h-[65%] flex flex-row gap-4">
+    <div className="w-full flex flex-col items-center z-0">
+      { /* Hero */}
+      <div className="w-full h-[500px] flex flex-row p-8 gap-4 bg-black">
         <div className="w-1/2 h-full">
           <ParallaxImage src={new_releases} alt="New Releases" href="/new-releases" priority />
         </div>
@@ -76,7 +78,16 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <ProductCarousel title="Featured Comics" category="comic"></ProductCarousel>
+
+      {/* Product Shelves */}
+      <div className="w-full flex flex-col items-center z-0 px-8">
+        <ProductCarousel title="Featured Comics" category="comic"></ProductCarousel>
+        <ProductCarousel title="Featured Comics" category="comic"></ProductCarousel>
+        <ProductCarousel title="Featured Comics" category="comic"></ProductCarousel>
+      </div>
+
+      { /* Footer */ }
+      <Footer></Footer>
     </div>
   );
 }
