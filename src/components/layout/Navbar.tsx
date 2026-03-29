@@ -11,8 +11,7 @@ export function Navbar() {
             <Image
               src={logo}
               alt="Heroes & Champions logo"
-              className="h-[95px] w-[234px] cursor-pointer"
-              priority
+              className="h-[95px] w-[234px] cursor-pointer transition-all duration-500 hover:brightness-125 hover:scale-101 active:scale-98"              priority
             />
           </Link>
         </div>
