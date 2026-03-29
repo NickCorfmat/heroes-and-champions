@@ -66,15 +66,15 @@ export function ProductCarousel({
         <div className="flex gap-2">
           <button
             onClick={() => scroll("left")}
-            className="px-3 py-1 bg-gray-800 text-white rounded cursor-pointer"
+            className="px-3 py-1 bg-red-700 text-white font-bold text-xl rounded-md cursor-pointer transition-transform duration-250 hover:scale-110 active:scale-95"
           >
-            ←
+            <i className="fa-solid fa-angle-left"></i>
           </button>
           <button
             onClick={() => scroll("right")}
-            className="px-3 py-1 bg-gray-800 text-white rounded cursor-pointer"
+            className="px-3 py-1 bg-red-700 text-white font-bold text-xl rounded-md cursor-pointer transition-transform duration-250 hover:scale-110 active:scale-95"
           >
-            →
+            <i className="fa-solid fa-angle-right"></i>
           </button>
         </div>
       </div>
@@ -84,7 +84,7 @@ export function ProductCarousel({
       ) : (
         <div
           ref={containerRef}
-          className="flex gap-4 overflow-x-auto scroll-smooth"
+          className="flex gap-4 overflow-x-auto overflow-y-hidden scroll-smooth"
           style={{ scrollbarWidth: "none" }}
         >
           {products.map((product) => (
