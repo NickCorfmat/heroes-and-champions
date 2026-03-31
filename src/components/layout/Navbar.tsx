@@ -72,7 +72,7 @@ export function Navbar() {
     <header className="fixed top-0 left-0 w-full z-[100] shadow-xl shadow-black/30">
 
       {/* Top Navbar */}
-      <div className="h-[100px] w-full flex justify-between items-center bg-gradient-to-b from-[#1a1a1a] to-[#262626] px-8 border-b border-white/10">
+      <div className="w-full h-[100px] flex justify-between items-center bg-gradient-to-b from-[#1a1a1a] to-[#262626] px-[50px] border-b border-white/10">
         
         {/* Logo */}
         <Link href="/" aria-label="Go to home page" className="inline-block shrink-0">
@@ -136,7 +136,7 @@ export function Navbar() {
       </div>
 
       {/* Bottom Navbar */}
-      <div className="h-[60px] w-full bg-[#295585] flex items-center justify-evenly px-8 gap-1">
+      <div className="w-full h-[50px] bg-[#295585] flex items-center justify-center px-8 gap-2">
         {NAV_ITEMS.map((item, index) => (
           <div
             key={item.label}
@@ -146,7 +146,7 @@ export function Navbar() {
           >
             <Link
               href={item.href}
-              className="px-4 h-full flex items-center text-white font-semibold text-sm hover:bg-white/15 transition-colors duration-150 whitespace-nowrap"
+              className="px-4 h-full flex items-center text-white font-semibold text-base hover:bg-white/15 transition-colors duration-150 whitespace-nowrap"
             >
               {item.label}
               <i className="fa-solid fa-chevron-down ml-1.5 text-xs opacity-70" />
@@ -154,7 +154,7 @@ export function Navbar() {
 
             {/* Dropdown */}
             {openIndex === index && (
-              <div className="absolute top-full left-0 min-w-[180px] bg-[#1e1e1e] shadow-xl rounded-b-lg overflow-hidden z-50">
+              <div className="absolute top-full left-0 min-w-[180px] bg-[#1e1e1e] shadow-xl overflow-hidden z-50">
                 {item.children.map((child) => (
                   <Link
                     key={child.label}
