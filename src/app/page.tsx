@@ -127,8 +127,8 @@ export default function Home() {
       {/* Product Shelves */}
       <div className="w-full max-w-screen-2xl flex flex-col items-center px-8">
         <ProductCarousel title="Featured Comics" category="comic" />
-        <ProductCarousel title="Featured Comics" category="comic" />
-        <ProductCarousel title="Featured Comics" category="comic" />
+        <ProductCarousel title="Trading Cards" category="comic" />
+        <ProductCarousel title="DC Comics" category="comic" />
       </div>
 
       {/* Footer */}
