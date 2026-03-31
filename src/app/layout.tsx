@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Navbar />
-        <div className="pt-[155px]">{children}</div>
+        <div className="pt-[145px]">{children}</div>
         <Script
           src="https://kit.fontawesome.com/657b569d85.js"
           crossOrigin="anonymous"
