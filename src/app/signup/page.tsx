@@ -1,99 +1,66 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
+import Link from "next/link";
 
-export default function SignupPage() {
-  const [showPassword, setShowPassword] = useState(false);
+export default function SignUpPage() {
+  const [form, setForm] = useState({ name: "", email: "", password: "", confirm: "" });
+  const [focused, setFocused] = useState<string | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-12">
-      <div className="mx-auto w-full max-w-md rounded-2xl border border-black/10 bg-background p-6 shadow-sm dark:border-white/15 sm:p-8">
-        <h1 className="text-3xl font-semibold tracking-tight">Create account</h1>
-        <p className="mt-2 text-sm text-foreground/70">
-          Join Heroes &amp; Champions to save wishlists and get updates.
-        </p>
+    <main className="h-[80vh] bg-[#f2f2f2] flex items-center justify-center px-4">
 
-        <form
-          className="mt-6 space-y-5"
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
-          <div>
-            <label htmlFor="name" className="text-sm font-medium">
-              Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              autoComplete="name"
-              required
-              className="mt-2 h-11 w-full rounded-xl border border-black/10 bg-transparent px-3 text-sm outline-none ring-offset-background focus:ring-2 focus:ring-[#295585]/60 dark:border-white/15"
-              placeholder="Your name"
-            />
-          </div>
+      <div className="w-full max-w-sm bg-white border border-black/10 rounded-2xl shadow-xl shadow-black/10 overflow-hidden">
 
-          <div>
-            <label htmlFor="email" className="text-sm font-medium">
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              className="mt-2 h-11 w-full rounded-xl border border-black/10 bg-transparent px-3 text-sm outline-none ring-offset-background focus:ring-2 focus:ring-[#295585]/60 dark:border-white/15"
-              placeholder="you@example.com"
-            />
-          </div>
+        {/* Header */}
+        <div className="px-8 pt-7 pb-5 border-b border-black/10 flex flex-col items-center gap-2">
+          <h1 className="text-black/80 text-2xl font-bold">Create Account</h1>
+          <p className="text-gray-500 text-sm">Join the Heroes & Champions community</p>
+        </div>
 
-          <div>
-            <label htmlFor="password" className="text-sm font-medium">
-              Password
-            </label>
-            <div className="mt-2 flex h-11 items-center rounded-xl border border-black/10 pr-1 dark:border-white/15">
+        {/* Form */}
+        <div className="px-8 py-6 flex flex-col gap-3">
+          {[
+            { name: "name", label: "Full Name", type: "text", placeholder: "Peter Parker" },
+            { name: "email", label: "Email", type: "email", placeholder: "you@example.com" },
+            { name: "password", label: "Password", type: "password", placeholder: "••••••••" },
+            { name: "confirm", label: "Confirm Password", type: "password", placeholder: "••••••••" },
+          ].map((field) => (
+            <div key={field.name} className="flex flex-col gap-1">
+              <label className="text-gray-500 text-xs font-semibold">{field.label}</label>
               <input
-                id="password"
-                name="password"
-                type={showPassword ? "text" : "password"}
-                autoComplete="new-password"
-                required
-                minLength={8}
-                className="h-full w-full bg-transparent px-3 text-sm outline-none"
-                placeholder="At least 8 characters"
+                name={field.name}
+                type={field.type}
+                placeholder={field.placeholder}
+                value={form[field.name as keyof typeof form]}
+                onChange={handleChange}
+                onFocus={() => setFocused(field.name)}
+                onBlur={() => setFocused(null)}
+                className={`w-full h-[40px] rounded-lg px-3 text-sm bg-[#f7f7f7] border outline-none transition-all duration-200 placeholder-black/20 text-gray-900 ${
+                  focused === field.name
+                    ? "border-red-500 shadow-[0_0_0_3px_rgba(185,28,28,0.1)]"
+                    : "border-black/10 hover:border-black/25"
+                }`}
               />
-              <button
-                type="button"
-                className="h-9 shrink-0 rounded-lg px-3 text-xs font-semibold text-foreground/80 hover:bg-black/[.05] dark:hover:bg-white/[.07]"
-                onClick={() => setShowPassword((v) => !v)}
-              >
-                {showPassword ? "Hide" : "Show"}
-              </button>
             </div>
-            <p className="mt-2 text-xs text-foreground/60">
-              Use 8+ characters. Don’t reuse a password from another site.
-            </p>
-          </div>
+          ))}
 
-          <button
-            type="submit"
-            className="inline-flex h-11 w-full items-center justify-center rounded-xl bg-[#295585] px-4 text-sm font-semibold text-white hover:opacity-95"
-          >
-            Create account
+          <button className="w-full h-[42px] mt-1 bg-red-700 hover:bg-red-600 active:scale-[0.98] text-white font-bold text-sm rounded-lg transition-all duration-200 cursor-pointer">
+            Create Account
           </button>
-        </form>
 
-        <div className="mt-6 text-center text-sm text-foreground/70">
-          Already have an account?{" "}
-          <Link href="/login" className="font-semibold text-[#295585] hover:underline">
-            Log in
-          </Link>
+          <p className="text-center text-gray-400 text-xs pt-1">
+            Already have an account?{" "}
+            <Link href="/login" className="text-red-600 hover:text-red-500 font-semibold transition-colors">
+              Log In
+            </Link>
+          </p>
         </div>
       </div>
     </main>
   );
 }
-
