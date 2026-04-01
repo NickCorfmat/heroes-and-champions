@@ -31,12 +31,9 @@ const NAV_ITEMS = [
   },
   {
     label: "GRADED COMICS",
-    href: "/cgc-comics",
+    href: "https://shortboxed.com/u/heroes_and_champions_comics",
     children: [
-      { label: "CGC 9.8", href: "/cgc-comics/9-8" },
-      { label: "CGC 9.6", href: "/cgc-comics/9-6" },
-      { label: "Key Issues", href: "/cgc-comics/key-issues" },
-      { label: "Golden Age", href: "/cgc-comics/golden-age" },
+      { label: "Visit Shortboxed Store", href: "https://shortboxed.com/u/heroes_and_champions_comics" },
     ],
   },
   {
@@ -108,7 +105,7 @@ export function Navbar() {
     : user?.email?.[0].toUpperCase() ?? "?";
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[100] shadow-xl shadow-black/30">
+    <header className="fixed top-0 left-0 w-full z-[100] shadow-md shadow-black/20">
 
       {/* Top Navbar */}
       <div className="w-full h-[100px] flex justify-between items-center bg-gradient-to-b from-[#1a1a1a] to-[#262626] px-[50px] border-b border-white/10">
