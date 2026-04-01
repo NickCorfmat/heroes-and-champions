@@ -73,7 +73,7 @@ export function ProductCarousel({
   return (
     <div className="w-full py-8">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-4xl text-black/80 font-bold">{title}</h2>
+        <h2 className="text-3xl text-black/80 font-bold">{title}</h2>
         <div className="flex gap-2">
           <button
             onClick={() => scroll("left")}
