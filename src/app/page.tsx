@@ -13,7 +13,7 @@ const TRANSLATE_STRENGTH = 5;
 const IMAGE_OVERFLOW = 30;
 
 function ParallaxImage({
-  src, alt, href, priority, caption, heading, buttonLabel,
+  src, alt, href, priority, caption, heading, buttonLabel, headingSize = "text-3xl",
 }: {
   src: any;
   alt: string;
@@ -22,6 +22,7 @@ function ParallaxImage({
   caption?: string;
   heading?: string;
   buttonLabel?: string;
+  headingSize?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
@@ -65,9 +66,9 @@ function ParallaxImage({
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 rounded-2xl" />
 
       {/* Text + button */}
-      <div className="absolute bottom-0 left-0 z-20 p-5 flex flex-col gap-2">
+      <div className="absolute bottom-1 left-1 z-20 p-5 flex flex-col gap-2">
+        {heading && <h2 className={`text-white ${headingSize} font-bold drop-shadow mb`}>{heading}</h2>}
         {caption && <p className="text-white/80 text-sm">{caption}</p>}
-        {heading && <h2 className="text-white text-2xl font-bold drop-shadow">{heading}</h2>}
         {buttonLabel && (
           <Link
             href={href}
@@ -98,6 +99,7 @@ export default function Home() {
             caption="Check out the newest wave of comics"
             heading="New Releases"
             buttonLabel="Explore"
+            headingSize="text-4xl"
           />
         </div>
         <div className="w-1/2 h-full flex flex-col items-center gap-4">
@@ -107,7 +109,7 @@ export default function Home() {
               alt="eBay Store"
               href="https://www.ebay.com/str/ccs1comics"
               caption="Explore our wider selection"
-              heading="eBay"
+              heading="eBay Store"
               buttonLabel="Visit"
             />
           </div>
