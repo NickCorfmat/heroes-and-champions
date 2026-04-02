@@ -16,9 +16,11 @@ export interface Product {
 
 export function ProductCard({
   product,
+  added = false,
   onAddToCart,
 }: {
   product: Product;
+  added?: boolean;
   onAddToCart?: (product: Product) => void;
 }) {
   return (
@@ -53,9 +55,13 @@ export function ProductCard({
             e.preventDefault();
             onAddToCart?.(product);
           }}
-          className="w-full py-1.5 mt-2 bg-red-600 hover:bg-red-500 active:scale-95 text-white text-xs font-bold rounded-lg transition-all duration-150 cursor-pointer"
+          className={`w-full py-1.5 mt-2 text-white text-xs font-bold rounded-lg transition-all duration-150 cursor-pointer active:scale-95 ${
+            added
+              ? "bg-green-600 cursor-default"
+              : "bg-red-600 hover:bg-red-500"
+          }`}
         >
-          Add to Cart
+          {added ? "✓ Added!" : "Add to Cart"}
         </button>
       </div>
     </Link>
