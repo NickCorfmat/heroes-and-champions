@@ -13,7 +13,14 @@ const TRANSLATE_STRENGTH = 5;
 const IMAGE_OVERFLOW = 30;
 
 function ParallaxImage({
-  src, alt, href, priority, caption, heading, buttonLabel, headingSize = "text-3xl",
+  src,
+  alt,
+  href,
+  priority,
+  caption,
+  heading,
+  buttonLabel,
+  headingSize = "text-3xl",
 }: {
   src: any;
   alt: string;
@@ -33,7 +40,10 @@ function ParallaxImage({
     if (!rect) return;
     const relY = (e.clientY - rect.top) / rect.height - 0.5;
     const relX = (e.clientX - rect.right) / rect.width - 0.5;
-    setTranslate({ x: -relX * TRANSLATE_STRENGTH, y: -relY * TRANSLATE_STRENGTH });
+    setTranslate({
+      x: -relX * TRANSLATE_STRENGTH,
+      y: -relY * TRANSLATE_STRENGTH,
+    });
   };
 
   const handleMouseLeave = () => {
@@ -59,7 +69,13 @@ function ParallaxImage({
           willChange: "transform",
         }}
       >
-        <Image src={src} alt={alt} fill className="object-cover" priority={priority} />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-cover"
+          priority={priority}
+        />
       </div>
 
       {/* Gradient overlay */}
@@ -67,7 +83,11 @@ function ParallaxImage({
 
       {/* Text + button */}
       <div className="absolute bottom-1 left-1 z-20 p-5 flex flex-col gap-2">
-        {heading && <h2 className={`text-white ${headingSize} font-bold drop-shadow mb`}>{heading}</h2>}
+        {heading && (
+          <h2 className={`text-white ${headingSize} font-bold drop-shadow mb`}>
+            {heading}
+          </h2>
+        )}
         {caption && <p className="text-white/80 text-sm">{caption}</p>}
         {buttonLabel && (
           <Link
@@ -117,7 +137,7 @@ export default function Home() {
             <ParallaxImage
               src={cgc_comics}
               alt="CGC Comics"
-              href="/cgc-comics"
+              href="https://shortboxed.com/u/heroes_and_champions_comics"
               caption="CGC comics for your collectible taste"
               heading="Graded Comics"
               buttonLabel="Explore"
@@ -129,7 +149,7 @@ export default function Home() {
       {/* Product Shelves */}
       <div className="w-full max-w-screen-2xl flex flex-col items-center px-8">
         <ProductCarousel title="Featured Comics" category="comic" />
-        <ProductCarousel title="Trading Cards" category="comic" />
+        <ProductCarousel title="Trading Cards" category="trading cards" />
         <ProductCarousel title="DC Comics" category="comic" />
       </div>
 
