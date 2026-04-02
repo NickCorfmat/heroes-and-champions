@@ -16,7 +16,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Heroes & Champions Comics",
-  description: "Vintage Comics, Collectibles, Trading Cards, and more! Stop by our store in Sunnyvale to check out our wide selection!",
+  description:
+    "Vintage Comics, Collectibles, Trading Cards, and more! Stop by our store in Sunnyvale to check out our wide selection!",
 };
 
 export default function RootLayout({
@@ -26,7 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <Navbar />
         <div className="pt-[145px]">{children}</div>
         <Script
