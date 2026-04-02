@@ -1,41 +1,71 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { supabaseClient } from "@/lib/supabaseClient";
+import { useRouter } from "next/navigation";
+import { getSupabaseBrowserClient } from "@/lib/browser-client";
+import { User } from "@supabase/supabase-js";
 import { ProductCard, Product } from "./ProductCard";
 import { ProductSkeletonCard } from "./ProductSkeletonCard";
+import { addToCart } from "@/lib/cart";
 
 export function ProductCarousel({
   title,
   category,
-  onAddToCart,
 }: {
   title: string;
   category: string;
-  onAddToCart?: (product: Product) => void;
 }) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<User | null>(null);
+  const [addedId, setAddedId] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const supabase = getSupabaseBrowserClient();
+  const router = useRouter();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_e, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [supabase]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
 
-      const { data, error } = await supabaseClient
+      const { data, error } = await supabase
         .from("products")
         .select("*")
-        .eq("category", category); // (you probably meant this)
+        .eq("category", category);
 
-      if (!error && data) {
-        setProducts(data);
-      }
-
+      if (!error && data) setProducts(data);
       setLoading(false);
     };
 
     fetchProducts();
   }, [category]);
+
+  async function handleAddToCart(product: Product) {
+    if (!user) {
+      router.push("/email-password");
+      return;
+    }
+
+    await addToCart(supabase, user.id, product.id);
+
+    window.dispatchEvent(new Event("cart-updated"));
+
+    setAddedId(product.id);
+    setTimeout(() => setAddedId(null), 1500);
+  }
 
   const scroll = (direction: "left" | "right") => {
     containerRef.current?.scrollBy({
@@ -46,28 +76,26 @@ export function ProductCarousel({
 
   return (
     <div className="w-full py-8">
-      {/* header */}
+      {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-3xl text-black/80 font-bold">{title}</h2>
-
         <div className="flex gap-2">
           <button
             onClick={() => scroll("left")}
-            className="px-3 py-1 bg-red-600 text-white font-bold text-xl rounded-md hover:scale-105 active:scale-95"
+            className="px-3 py-1 bg-red-600 text-white font-bold text-xl rounded-md hover:scale-105 active:scale-95 cursor-pointer"
           >
-            <i className="fa-solid fa-angle-left"></i>
+            <i className="fa-solid fa-angle-left" />
           </button>
-
           <button
             onClick={() => scroll("right")}
-            className="px-3 py-1 bg-red-600 text-white font-bold text-xl rounded-md hover:scale-105 active:scale-95"
+            className="px-3 py-1 bg-red-600 text-white font-bold text-xl rounded-md hover:scale-105 active:scale-95 cursor-pointer"
           >
-            <i className="fa-solid fa-angle-right"></i>
+            <i className="fa-solid fa-angle-right" />
           </button>
         </div>
       </div>
 
-      {/* body */}
+      {/* Body */}
       {loading ? (
         <div className="flex gap-4 overflow-hidden">
           {Array.from({ length: 10 }).map((_, i) => (
@@ -84,7 +112,8 @@ export function ProductCarousel({
             <ProductCard
               key={product.id}
               product={product}
-              onAddToCart={onAddToCart}
+              added={addedId === product.id}
+              onAddToCart={handleAddToCart}
             />
           ))}
         </div>
