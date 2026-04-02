@@ -50,7 +50,6 @@ export function Footer() {
   return (
     <footer className="w-full flex flex-col bg-black text-white">
       <div className="flex flex-row flex-wrap px-12 pt-8 pb-8">
-        
         <div className="w-full sm:w-1/4 flex flex-col items-start pr-4 mb-6">
           <Image
             src={logo}
