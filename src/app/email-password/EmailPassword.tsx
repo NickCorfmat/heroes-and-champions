@@ -54,16 +54,24 @@ export default function EmailPassword({ user }: EmailPasswordProps) {
         password,
         options: {
           emailRedirectTo: `${window.location.origin}/`,
+          data: {
+            full_name: name,
+          },
         },
       });
       if (error) {
         setStatus(error.message);
       } else {
-        setStatus("Account created successfully. Check your inbox to confirm your new account.");
+        setStatus(
+          "Account created successfully. Check your inbox to confirm your new account."
+        );
       }
       console.log({ data });
     } else {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
       if (error) {
         setStatus(error.message);
       } else {
@@ -85,14 +93,16 @@ export default function EmailPassword({ user }: EmailPasswordProps) {
   return (
     <main className="h-[80vh] bg-[#f2f2f2] flex items-center justify-center px-4">
       <div className="w-full max-w-sm bg-white border border-black/10 rounded-2xl shadow-xl shadow-black/10 overflow-hidden">
-
         {/* Tab toggle */}
         <div className="flex border-b border-black/10">
           {(["signin", "signup"] as Mode[]).map((m) => (
             <button
               key={m}
               type="button"
-              onClick={() => { setMode(m); setStatus(""); }}
+              onClick={() => {
+                setMode(m);
+                setStatus("");
+              }}
               className={`flex-1 py-4 text-sm font-bold transition-colors duration-200 cursor-pointer ${
                 mode === m
                   ? "text-red-700 border-b-2 border-red-700 -mb-px"
@@ -118,10 +128,11 @@ export default function EmailPassword({ user }: EmailPasswordProps) {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="px-8 py-6 flex flex-col gap-3">
-
           {mode === "signup" && (
             <div className="flex flex-col gap-1">
-              <label className="text-gray-500 text-xs font-semibold">Full Name</label>
+              <label className="text-gray-500 text-xs font-semibold">
+                Full Name
+              </label>
               <input
                 type="text"
                 placeholder="Peter Parker"
@@ -148,7 +159,9 @@ export default function EmailPassword({ user }: EmailPasswordProps) {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-gray-500 text-xs font-semibold">Password</label>
+            <label className="text-gray-500 text-xs font-semibold">
+              Password
+            </label>
             <input
               type="password"
               placeholder="••••••••"
@@ -163,7 +176,8 @@ export default function EmailPassword({ user }: EmailPasswordProps) {
           {status && (
             <p
               className={`text-xs font-medium px-1 ${
-                status.includes("successfully") || status.includes("Check your inbox")
+                status.includes("successfully") ||
+                status.includes("Check your inbox")
                   ? "text-green-600"
                   : "text-red-600"
               }`}
@@ -182,16 +196,20 @@ export default function EmailPassword({ user }: EmailPasswordProps) {
           </button>
 
           <p className="text-center text-gray-400 text-xs pt-1">
-            {mode === "signin" ? "Don't have an account? " : "Already have an account? "}
+            {mode === "signin"
+              ? "Don't have an account? "
+              : "Already have an account? "}
             <button
               type="button"
-              onClick={() => { setMode(mode === "signin" ? "signup" : "signin"); setStatus(""); }}
+              onClick={() => {
+                setMode(mode === "signin" ? "signup" : "signin");
+                setStatus("");
+              }}
               className="text-red-600 hover:text-red-500 font-semibold transition-colors cursor-pointer"
             >
               {mode === "signin" ? "Sign Up" : "Log In"}
             </button>
           </p>
-
         </form>
       </div>
     </main>
