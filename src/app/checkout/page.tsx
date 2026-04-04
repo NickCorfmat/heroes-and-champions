@@ -37,7 +37,8 @@ export default function CheckoutPage() {
   async function fetchCart(userId: string) {
     const { data, error } = await (supabase as any)
       .from("cart_items")
-      .select(`
+      .select(
+        `
         id,
         quantity,
         products (
@@ -45,7 +46,8 @@ export default function CheckoutPage() {
           price,
           category
         )
-      `)
+      `
+      )
       .eq("user_id", userId);
 
     if (error || !data) {
@@ -96,7 +98,12 @@ export default function CheckoutPage() {
         currency: "usd",
       }}
     >
-      <CheckoutForm items={items} total={total} shipping={shipping} subtotal={subtotal} />
+      <CheckoutForm
+        items={items}
+        total={total}
+        shipping={shipping}
+        subtotal={subtotal}
+      />
     </Elements>
   );
 }
