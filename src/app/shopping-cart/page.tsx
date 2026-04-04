@@ -184,7 +184,7 @@ export default function ShoppingCartPage() {
       <div className="max-w-4xl mx-auto flex flex-col gap-6">
         <div>
           <h1 className="text-3xl font-bold text-black/80">Your Cart</h1>
-          <p className="text-gray-400 text-sm mt-1">
+          <p className="text-gray-400 text-md mt-1">
             {items.length} item{items.length !== 1 ? "s" : ""} · {user?.email}
           </p>
         </div>
@@ -197,13 +197,13 @@ export default function ShoppingCartPage() {
                 key={item.id}
                 className="bg-white border border-black/10 rounded-2xl shadow-xl shadow-black/10 p-4 flex gap-4 items-center"
               >
-                <div className="w-16 h-20 bg-gray-100 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
+                <div className="w-20 h-30 overflow-hidden shrink-0 flex items-center justify-center">
                   <Image
                     src={item.image_ref}
                     alt={item.title}
                     width={64}
                     height={80}
-                    className="h-20 w-auto object-contain"
+                    className="h-full w-auto object-contain"
                   />
                 </div>
 
@@ -211,7 +211,7 @@ export default function ShoppingCartPage() {
                   <p className="text-xs text-gray-400 uppercase tracking-wide font-semibold">
                     {item.category}
                   </p>
-                  <h3 className="font-semibold text-sm text-gray-900 leading-snug mt-0.5 line-clamp-2">
+                  <h3 className="font-semibold text-md text-gray-900 leading-snug mt-0.5 line-clamp-2">
                     {item.title}
                   </h3>
                   <p className="text-base font-black text-gray-900 mt-1">
