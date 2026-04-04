@@ -236,7 +236,7 @@ export function Navbar() {
           </button>
         </div>
 
-        <div className="flex items-center gap-5 shrink-0">
+        <div className="flex items-center gap-5 shrink-0 mt-2">
           {/* Auth */}
           {user ? (
             <div
@@ -247,9 +247,10 @@ export function Navbar() {
               <Link
                 href="/account"
                 aria-label="My account"
-                className="text-white/90 hover:text-white transition-colors duration-200 cursor-pointer"
+                className="flex flex-col items-center text-white/90 hover:text-white transition-colors duration-200 cursor-pointer"
               >
                 <i className="fa-solid fa-user text-xl" />
+                <span className="mt-1 text-sm">Profile</span>
               </Link>
 
               {profileOpen && (
@@ -317,12 +318,13 @@ export function Navbar() {
             <Link
               href="/shopping-cart"
               aria-label="Shopping Cart"
-              className="relative text-white/90 hover:text-white transition-colors duration-200 cursor-pointer block"
+              className="relative flex flex-col text-white/90 hover:text-white transition-colors duration-200 cursor-pointer block"
             >
               <i className="fa-solid fa-cart-shopping text-xl" />
-              <span className="absolute -top-2 -right-2 w-4 h-4 bg-red-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+              <span className="absolute -top-3 -right-3 w-5 h-5 bg-red-600 text-white text-[12px] font-bold rounded-full flex items-center justify-center">
                 {cartCount}
               </span>
+              <span className="mt-1 text-sm">Cart</span>
             </Link>
 
             {cartOpen && (
@@ -342,12 +344,12 @@ export function Navbar() {
                 {/* Items */}
                 {cartItems.length > 0 ? (
                   <>
-                    {cartItems.slice(0, 4).map((item) => (
+                    {cartItems.slice(0, 3).map((item) => (
                       <div
                         key={item.id}
                         className="flex items-center gap-3 px-4 py-3 border-b border-black/5 last:border-0 hover:bg-black/[0.02] transition-colors"
                       >
-                        <div className="w-9 h-12 bg-gray-100 rounded-md overflow-hidden shrink-0">
+                        <div className="w-14 h-21 bg-gray-100 shadow-sm shadow-black/30 overflow-hidden shrink-0">
                           <Image
                             src={item.image_ref}
                             alt={item.title}
@@ -384,23 +386,23 @@ export function Navbar() {
                       </div>
                     ))}
 
-                    {cartItems.length > 4 && (
-                      <div className="px-4 py-2.5 bg-[#f7f7f7] border-b border-black/10">
+                    {cartItems.length > 3 && (
+                      <div className="flex flex-col items-center justify-center px-4 py-2.5 bg-[#f7f7f7] border-b border-black/10">
                         <Link
                           href="/shopping-cart"
-                          className="text-xs text-red-700 hover:text-red-600 font-semibold transition-colors"
+                          className="text-sm underline font-bold text-red-700 hover:text-red-600 transition-colors"
                         >
-                          + {cartItems.length - 4} more item
-                          {cartItems.length - 4 !== 1 ? "s" : ""} — view all in
-                          cart →
+                          + {cartItems.length - 3} more item
+                          {cartItems.length - 3 !== 1 ? "s" : ""}. View all in
+                          cart
                         </Link>
                       </div>
                     )}
 
                     <div className="px-4 py-3 bg-[#f7f7f7] border-t border-black/10 flex flex-col gap-2">
                       <div className="flex justify-between items-center">
-                        <span className="text-black/50 text-xs">Subtotal</span>
-                        <span className="text-black/90 text-sm font-bold tabular-nums">
+                        <span className="text-black/50 text-md">Subtotal</span>
+                        <span className="text-black/90 text-md font-bold tabular-nums">
                           ${cartTotal.toFixed(2)}
                         </span>
                       </div>
