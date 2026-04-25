@@ -24,30 +24,30 @@
 .DS_Store
 *.pem
 
-# image assets
-*.ico
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.bmp
-*.tiff
-*.ico
-*.webp
-*.svg
-*.pdf
+# # image assets
+# *.ico
+# *.png
+# *.jpg
+# *.jpeg
+# *.gif
+# *.bmp
+# *.tiff
+# *.ico
+# *.webp
+# *.svg
+# *.pdf
 
-# video assets
-*.mp4
-*.mov
-*.avi
-*.wmv
-*.flv
-*.mkv
-*.webm
-*.mpeg
-*.mpg
-*.m4v
+# # video assets
+# *.mp4
+# *.mov
+# *.avi
+# *.wmv
+# *.flv
+# *.mkv
+# *.webm
+# *.mpeg
+# *.mpg
+# *.m4v
 
 # debug
 npm-debug.log*
