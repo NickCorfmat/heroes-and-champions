@@ -55,7 +55,7 @@ export function ProductCarousel({
 
   async function handleAddToCart(product: Product) {
     if (!user) {
-      router.push("/email-password");
+      router.push("/sign-in");
       return;
     }
 

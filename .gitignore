@@ -35,6 +35,7 @@
 *.ico
 *.webp
 *.svg
+*.pdf
 
 # video assets
 *.mp4

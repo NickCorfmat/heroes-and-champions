@@ -29,7 +29,7 @@ export default function ShoppingCartPage() {
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       if (!data.user) {
-        router.replace("/email-password");
+        router.replace("/sign-in");
       } else {
         setUser(data.user);
         fetchCart(data.user.id);
@@ -39,7 +39,7 @@ export default function ShoppingCartPage() {
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         if (!session?.user) {
-          router.replace("/email-password");
+          router.replace("/sign-in");
         } else {
           setUser(session.user);
           fetchCart(session.user.id);

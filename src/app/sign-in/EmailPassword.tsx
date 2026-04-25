@@ -92,7 +92,7 @@ export default function EmailPassword({ user }: EmailPasswordProps) {
 
   return (
     <main className="h-[80vh] bg-[#f2f2f2] flex items-center justify-center px-4">
-      <div className="w-full max-w-sm bg-white border border-black/10 rounded-2xl shadow-xl shadow-black/10 overflow-hidden">
+      <div className="w-full max-w-sm bg-white border border-black/10 shadow-xl shadow-black/10 overflow-hidden">
         {/* Tab toggle */}
         <div className="flex border-b border-black/10">
           {(["signin", "signup"] as Mode[]).map((m) => (
@@ -103,7 +103,7 @@ export default function EmailPassword({ user }: EmailPasswordProps) {
                 setMode(m);
                 setStatus("");
               }}
-              className={`flex-1 py-4 text-sm font-bold transition-colors duration-200 cursor-pointer ${
+              className={`flex-1 py-4 text-md font-bold transition-colors duration-200 cursor-pointer ${
                 mode === m
                   ? "text-red-700 border-b-2 border-red-700 -mb-px"
                   : "text-gray-400 hover:text-gray-600"
@@ -195,7 +195,7 @@ export default function EmailPassword({ user }: EmailPasswordProps) {
             {mode === "signin" ? "Log In" : "Create Account"}
           </button>
 
-          <p className="text-center text-gray-400 text-xs pt-1">
+          <p className="text-center text-gray-400 text-sm pt-1">
             {mode === "signin"
               ? "Don't have an account? "
               : "Already have an account? "}

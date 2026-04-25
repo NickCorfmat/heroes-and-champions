@@ -1,6 +1,6 @@
 import { supabaseClient } from "@/lib/supabaseClient";
-import { Product, ProductCard } from "@/components/layout/ProductCard";
-import { Footer } from "@/components/layout/Footer";
+import { Product, ProductCard } from "@/components/ProductCard";
+import { Footer } from "@/components/Footer";
 
 export default async function SearchPage({
   searchParams,

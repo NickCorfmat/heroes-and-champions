@@ -1,50 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../../public/logo.png";
-
-const FOOTER_SECTIONS = [
-  {
-    heading: "Quick Links",
-    items: [
-      { label: "Home", href: "/" },
-      { label: "New Releases", href: "/new-releases" },
-      { label: "Shop All", href: "/shop" },
-      { label: "Sell / Trade", href: "/sell-trade" },
-      { label: "About", href: "/about" },
-    ],
-  },
-  {
-    heading: "Locations",
-    items: [
-      {
-        label: "Sunnyvale Store",
-        href: "/locations/sunnyvale",
-        address: "574 E El Camino Real, Sunnyvale, CA 94087",
-        phone: "(408) 732-8775",
-      },
-      {
-        label: "Willow Glen Store",
-        href: "/locations/willow-glen",
-        address: "2050 Lincoln Ave, San Jose, CA 95125",
-        phone: "(408) 266-1103",
-      },
-    ],
-  },
-  {
-    heading: "Contact",
-    items: [
-      {
-        label: "heroesandchampions@gmail.com",
-        href: "mailto:heroesandchampions@gmail.com",
-      },
-    ],
-  },
-];
-
-const FOLLOW_US = [
-  { label: "Facebook", href: "https://www.facebook.com/HeroesaChampions" },
-  { label: "Instagram", href: "https://www.instagram.com/heroes.champions" },
-];
+import logo from "@public/logo.png";
+import { FOOTER_SECTIONS, FOLLOW_US } from "@/constants/constants";
 
 export function Footer() {
   return (

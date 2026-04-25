@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ProductCarousel } from "@/components/layout/ProductCarousel";
-import { Footer } from "@/components/layout/Footer";
+import { ProductCarousel } from "@/components/ProductCarousel";
 import new_releases from "../../public/batman1.png";
 import ebay_store from "../../public/comicsbg.png";
 import cgc_comics from "../../public/cgc.png";
@@ -92,7 +91,7 @@ function ParallaxImage({
         {buttonLabel && (
           <Link
             href={href}
-            className="mt-1 w-fit px-5 py-2 bg-red-700 hover:bg-red-600 text-white font-bold rounded-md transition-colors duration-200"
+            className="mt-1 w-fit px-5 py-2 bg-red-700 text-white font-bold rounded-lg transition duration-200 hover:scale-102 active:scale-98"
           >
             {buttonLabel}
           </Link>
@@ -116,7 +115,7 @@ export default function Home() {
             alt="New Releases"
             href="/new-releases"
             priority
-            caption="Check out the newest wave of comics"
+            caption="Check out the newest wave of comics!"
             heading="New Releases"
             buttonLabel="Explore"
             headingSize="text-4xl"
@@ -128,7 +127,7 @@ export default function Home() {
               src={ebay_store}
               alt="eBay Store"
               href="https://www.ebay.com/str/ccs1comics"
-              caption="Explore our wider selection"
+              caption="Explore our wider selection!"
               heading="eBay Store"
               buttonLabel="Visit"
             />
@@ -138,7 +137,7 @@ export default function Home() {
               src={cgc_comics}
               alt="CGC Comics"
               href="https://shortboxed.com/u/heroes_and_champions_comics"
-              caption="CGC comics for your collectible taste"
+              caption="CGC comics for your collectible taste!"
               heading="Graded Comics"
               buttonLabel="Explore"
             />
@@ -152,9 +151,6 @@ export default function Home() {
         <ProductCarousel title="Trading Cards" category="trading cards" />
         <ProductCarousel title="DC Comics" category="comic" />
       </div>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }

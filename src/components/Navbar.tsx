@@ -4,75 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import logo from "../../../public/logo.png";
+import logo from "@public/logo.png";
 import { getSupabaseBrowserClient } from "@/lib/browser-client";
 import { User } from "@supabase/supabase-js";
 import { removeFromCart, updateCartQuantity } from "@/lib/cart";
-
-const NAV_ITEMS = [
-  {
-    label: "NEW RELEASES",
-    href: "/new-releases",
-    children: [
-      { label: "Marvel", href: "/new-releases/marvel" },
-      { label: "DC", href: "/new-releases/dc" },
-      { label: "Image Comics", href: "/new-releases/image" },
-      { label: "Indie", href: "/new-releases/indie" },
-    ],
-  },
-  {
-    label: "SHOP ALL",
-    href: "/shop",
-    children: [
-      { label: "Comics", href: "/shop/comics" },
-      { label: "Trading Cards", href: "/shop/trading-cards" },
-      { label: "Collectibles", href: "/shop/collectibles" },
-      { label: "Manga", href: "/shop/manga" },
-    ],
-  },
-  {
-    label: "GRADED COMICS",
-    href: "https://shortboxed.com/u/heroes_and_champions_comics",
-    children: [
-      {
-        label: "Visit Shortboxed Store",
-        href: "https://shortboxed.com/u/heroes_and_champions_comics",
-      },
-    ],
-  },
-  {
-    label: "SELL / TRADE",
-    href: "/sell-trade",
-    children: [
-      { label: "Sell Your Comics", href: "/sell-trade/sell" },
-      { label: "Trade In", href: "/sell-trade/trade" },
-      { label: "Get an Appraisal", href: "/sell-trade/appraisal" },
-    ],
-  },
-  {
-    label: "EBAY STORE",
-    href: "https://www.ebay.com/str/ccs1comics",
-    children: [
-      {
-        label: "Current Listings",
-        href: "https://www.ebay.com/str/ccs1comics",
-      },
-      {
-        label: "Ending Soon",
-        href: "https://www.ebay.com/str/ccs1comics?_sop=1&_tab=shop",
-      },
-    ],
-  },
-  {
-    label: "ABOUT",
-    href: "/about",
-    children: [
-      { label: "Our Story", href: "/about" },
-      { label: "Locations", href: "/about/locations" },
-      { label: "Contact Us", href: "/about/contact" },
-    ],
-  },
-];
+import { NAV_ITEMS } from "@/constants/constants";
 
 interface CartPreviewItem {
   id: number;
@@ -254,7 +190,7 @@ export function Navbar() {
               </Link>
 
               {profileOpen && (
-                <div className="absolute right-0 top-[100%] w-52 bg-[#f2f2f2] border border-white/10 rounded-xl shadow-xl overflow-hidden z-50">
+                <div className="absolute right-0 top-[100%] w-52 bg-[#f2f2f2] border border-white/10 shadow-xl overflow-hidden z-50">
                   <div className="px-4 py-3 border-b border-white/10">
                     <p className="text-black/90 text-md font-semibold truncate">
                       {user.user_metadata?.full_name ?? "My Account"}
@@ -292,13 +228,13 @@ export function Navbar() {
           ) : (
             <div className="flex items-center gap-3 text-sm font-bold">
               <Link
-                href="/email-password"
+                href="/sign-in"
                 className="text-white/90 hover:text-white transition-colors duration-200"
               >
                 Log In
               </Link>
               <Link
-                href="/email-password"
+                href="/sign-in"
                 className="px-4 py-2 bg-red-700 text-white rounded-lg transition duration-200 hover:scale-102 active:scale-98"
               >
                 Sign Up
@@ -328,10 +264,10 @@ export function Navbar() {
             </Link>
 
             {cartOpen && (
-              <div className="absolute right-0 top-[100%] w-80 bg-white border border-black/10 rounded-xl shadow-2xl shadow-black/20 overflow-hidden z-50">
+              <div className="absolute right-0 top-[100%] w-80 bg-white border border-black/10 shadow-2xl shadow-black/20 overflow-hidden z-50">
                 {/* Header */}
                 <div className="px-4 py-3 bg-[#f7f7f7] border-b border-black/10 flex items-center justify-between">
-                  <p className="text-black/80 text-sm font-bold">
+                  <p className="text-black/80 text-md font-bold">
                     {cartCount === 0 ? "Your cart" : `Your cart (${cartCount})`}
                   </p>
                   {cartItems.length > 0 && (
@@ -408,25 +344,26 @@ export function Navbar() {
                       </div>
                       <Link
                         href="/shopping-cart"
-                        className="w-full h-[38px] flex items-center justify-center bg-red-700 hover:bg-red-600 active:scale-[0.98] text-white font-bold text-xs rounded-lg transition-all duration-150"
+                        className="w-full h-[38px] flex items-center justify-center bg-red-700 hover:bg-red-600 active:scale-[0.98] text-white font-bold text-md rounded-lg transition-all duration-150"
                       >
                         View Cart & Checkout
+                        <i className="fa-solid fa-angle-right" />
                       </Link>
                     </div>
                   </>
                 ) : (
                   <div className="px-4 py-8 flex flex-col items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
-                      <i className="fa-solid fa-cart-shopping text-gray-300 text-sm" />
+                      <i className="fa-solid fa-cart-shopping text-gray-300 text-md" />
                     </div>
-                    <p className="text-black/40 text-xs text-center">
+                    <p className="text-black/40 text-md text-center">
                       {user
-                        ? "No items yet — start browsing!"
+                        ? "No items yet, start browsing!"
                         : "Sign in to see your saved cart."}
                     </p>
                     <Link
-                      href={user ? "/shop" : "/email-password"}
-                      className="h-[34px] px-5 flex items-center bg-red-700 hover:bg-red-600 text-white font-bold text-xs rounded-lg transition-colors duration-200"
+                      href={user ? "/shop" : "/sign-in"}
+                      className="h-[34px] px-5 flex items-center bg-red-700 hover:bg-red-600 text-white font-bold text-md rounded-lg transition-colors duration-200"
                     >
                       {user ? "Browse Comics" : "Log In"}
                     </Link>

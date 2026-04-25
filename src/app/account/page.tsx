@@ -15,7 +15,7 @@ export default function AccountPage() {
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       if (!data.user) {
-        router.replace("/email-password");
+        router.replace("/sign-in");
       } else {
         setUser(data.user);
         setLoading(false);
@@ -25,7 +25,7 @@ export default function AccountPage() {
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         if (!session?.user) {
-          router.replace("/email-password");
+          router.replace("/sign-in");
         } else {
           setUser(session.user);
         }
@@ -38,7 +38,7 @@ export default function AccountPage() {
   async function handleSignOut() {
     setSigningOut(true);
     await supabase.auth.signOut();
-    router.replace("/email-password");
+    router.replace("/sign-in");
   }
 
   const initials = user?.user_metadata?.full_name
