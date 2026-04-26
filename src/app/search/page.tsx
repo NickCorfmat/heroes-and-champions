@@ -1,6 +1,6 @@
-import { supabaseClient } from "@/lib/supabaseClient";
 import { Product, ProductCard } from "@/components/ProductCard";
 import { Footer } from "@/components/Footer";
+import { getSupabaseClient } from "@/lib/supabaseClient";
 
 export default async function SearchPage({
   searchParams,
@@ -10,7 +10,7 @@ export default async function SearchPage({
   const params = await searchParams;
   const query = params.q || "";
 
-  const { data: products, error } = await supabaseClient.rpc(
+  const { data: products, error } = await getSupabaseClient().rpc(
     "search_products",
     { search_query: query }
   );
