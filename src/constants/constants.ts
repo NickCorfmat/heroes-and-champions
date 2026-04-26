@@ -126,7 +126,7 @@ export const LOCATIONS = [
       { day: "Sunday", hours: "11 AM – 6 PM" },
     ],
     mapEmbed:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d101482.244493532!2d-122.12175253706006!3d37.358601131632966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb67085bd5af3%3A0x7e6a0acafb606537!2sHeroes%20%26%20Champions!5e0!3m2!1sen!2sus!4v1777096927191!5m2!1sen!2sus",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12684.668758122723!2d-122.04487926044918!3d37.3622207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb67085bd5af3%3A0x7e6a0acafb606537!2sHeroes%20%26%20Champions!5e0!3m2!1sen!2sus!4v1777231532511!5m2!1sen!2sus",
     directionsUrl:
       "https://maps.google.com/?q=574+E+El+Camino+Real,+Sunnyvale,+CA+94087",
   },
@@ -149,7 +149,7 @@ export const LOCATIONS = [
       { day: "Sunday", hours: "11 AM – 6 PM" },
     ],
     mapEmbed:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.0588095811145!2d-121.8942660651123!3d37.29374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808e336f81e14501%3A0xe8e3085fe3dd389d!2sHeroes%20%26%20Champions%20Willow%20Glen!5e0!3m2!1sen!2sus!4v1777097291688!5m2!1sen!2sus",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6348.085208344059!2d-121.89214175657197!3d37.29412408344022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808e336f81e14501%3A0xe8e3085fe3dd389d!2sHeroes%20%26%20Champions%20Willow%20Glen!5e0!3m2!1sen!2sus!4v1777231669292!5m2!1sen!2sus",
     directionsUrl:
       "https://maps.google.com/?q=2050+Lincoln+Ave,+San+Jose,+CA+95125",
   },
