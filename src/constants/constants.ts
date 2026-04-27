@@ -56,8 +56,8 @@ export const NAV_ITEMS = [
     label: "ABOUT",
     href: "/about",
     children: [
-      { label: "Locations", href: "/about/locations" },
-      { label: "Contact Us", href: "/about/contact" },
+      { label: "Locations", href: "/locations" },
+      { label: "Contact Us", href: "/contact" },
     ],
   },
 ];
