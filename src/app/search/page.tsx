@@ -1,6 +1,5 @@
-import { Product, ProductCard } from "@/components/ProductCard";
-import { Footer } from "@/components/Footer";
 import { getSupabaseClient } from "@/lib/supabaseClient";
+import { SearchResults } from "@components/SearchResults";
 
 export default async function SearchPage({
   searchParams,
@@ -10,29 +9,18 @@ export default async function SearchPage({
   const params = await searchParams;
   const query = params.q || "";
 
-  const { data: products, error } = await getSupabaseClient().rpc(
-    "search_products",
-    { search_query: query }
-  );
+  const { data: products } = await getSupabaseClient().rpc("search_products", {
+    search_query: query,
+  });
 
   return (
     <>
-      <div className="p-8 text-black mb-8">
-        <h1 className="text-2xl font-bold mb-6">Results for "{query}"</h1>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-y-8">
-          {products?.length ? (
-            products.map((product: Product) => (
-              <ProductCard key={product.id} product={product} />
-            ))
-          ) : (
-            <p className="text-black/60 col-span-full">
-              No products found for "{query}".
-            </p>
-          )}
+      {/* Results */}
+      <div className="min-h-screen">
+        <div className="max-w-7xl mx-auto px-4 py-10">
+          <SearchResults products={products ?? []} query={query} />
         </div>
       </div>
-      <Footer />
     </>
   );
 }

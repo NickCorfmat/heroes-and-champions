@@ -40,7 +40,7 @@ export function ProductCard({
         )}
       </div>
 
-      <div className="p-3 flex flex-col flex-1 justify-between">
+      <div className="p-3 flex flex-col flex-1 justify-between text-black">
         <div>
           <h3 className="font-semibold text-sm line-clamp-2">
             {product.title ?? "Untitled"}
