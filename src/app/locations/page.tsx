@@ -4,7 +4,7 @@ export default function LocationsPage() {
   const todayName = new Date().toLocaleDateString("en-US", { weekday: "long" });
 
   return (
-    <main className="bg-gray-100 min-h-screen">
+    <main className="bg-gray-100 min-h-screen pb-12">
       {/* Page Header */}
       <div className="bg-[#222222] border-b-4 border-red-600 px-6 py-8">
         <div className="max-w-5xl mx-auto">
